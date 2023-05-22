@@ -68,8 +68,8 @@ export default class ProductsManager{
         const products = await this.getProducts()
         const result = products.filter((prod) => prod.id == id)
         if(result.length == 0){
-            console.log(`no se encontro el producto con id ${id}`)
-            return;
+            // console.log(`no se encontro el producto con id ${id}`)
+            return `no se encontro el producto con id ${id}`;
         }
         return result
     }
