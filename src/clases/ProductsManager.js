@@ -7,10 +7,14 @@ export default class ProductsManager{
         this.products = [];
     }
 
-    getProducts = async () => {
+    getProducts = async (limite) => {
         if(fs.existsSync(path)){
             const users = await fs.promises.readFile(path, "utf-8");
             const usersFormat = await JSON.parse(users)
+            if(limite){
+                const productsLimite = usersFormat.slice(0, limite)
+                return productsLimite
+            }
             return usersFormat;
         }else{
             return [];
@@ -122,21 +126,21 @@ export default class ProductsManager{
     }
 }
 
-const products = new ProductsManager()
+// const products = new ProductsManager()
 
-const env = async () => {
-    //console.log(await products.getProducts())
-    //console.log(await products.createProducts("termica", "220v", 1500, "terminca.jpg", "abc129", 15))
-    //console.log(await products.createProducts("termica", "220v", 1500, "terminca.jpg", "abc125", 15))
-    //console.log(await products.createProducts("termica", "220v", 1500, "terminca.jpg", "abc126", 15))
-    //console.log(await products.createProducts("termica", "220v", 1500, "terminca.jpg", "abc127", 15))
-    //console.log(await products.createProducts("termica", "220v", 1500, "terminca.jpg", "abc128", 15))
-    //console.log(await products.getProducts())
-    //console.log(await products.getProductByCode("abc125"))
-    //console.log(await products.getProductById(4))
-    //console.log(await products.deleteProductById(4))
-    //console.log(await products.deleteProductByCode("abc126"))
-    console.log(await products.updateProduct(2, {code: "abc131"}))
-}
+// const env = async () => {
+//     //console.log(await products.getProducts())
+//     //console.log(await products.createProducts("termica", "220v", 1500, "terminca.jpg", "abc129", 15))
+//     //console.log(await products.createProducts("termica", "220v", 1500, "terminca.jpg", "abc125", 15))
+//     //console.log(await products.createProducts("termica", "220v", 1500, "terminca.jpg", "abc126", 15))
+//     //console.log(await products.createProducts("termica", "220v", 1500, "terminca.jpg", "abc127", 15))
+//     //console.log(await products.createProducts("termica", "220v", 1500, "terminca.jpg", "abc128", 15))
+//     //console.log(await products.getProducts())
+//     //console.log(await products.getProductByCode("abc125"))
+//     //console.log(await products.getProductById(4))
+//     //console.log(await products.deleteProductById(4))
+//     //console.log(await products.deleteProductByCode("abc126"))
+//     console.log(await products.updateProduct(2, {code: "abc131"}))
+// }
 
-env()
+// env()
